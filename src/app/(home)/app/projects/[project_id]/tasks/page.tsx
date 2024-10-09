@@ -6,7 +6,7 @@ function Home() {
   const pathName = usePathname();
 
   return (
-   <TaskPage pathName={pathName} pageName=""/>
+   <TaskPage pathName={pathName} pageName="project"/>
   );
 }
 

@@ -25,6 +25,7 @@ import {
 import { useProjects } from "@/store";
 
 export default function ViewSelector({
+  page,
   view,
   setView,
   grouping,
@@ -34,6 +35,7 @@ export default function ViewSelector({
   filterProject,
   setFilterProject,
 }: {
+  page: string | undefined;
   view: string;
   setView: React.Dispatch<React.SetStateAction<any>>;
   grouping: string;
@@ -153,7 +155,7 @@ export default function ViewSelector({
           </DropdownMenuSub>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuGroup>
+        <DropdownMenuGroup className={`${(page === "project") && `hidden`}`}>
           <DropdownMenuLabel>Filter by</DropdownMenuLabel>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="flex flex-row items-center font-light text-gray-600 gap-2 w-[100%]">

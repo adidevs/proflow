@@ -23,7 +23,7 @@ function KanbanView({
   filterProject: string;
 }) {
   return (
-    <div className="kanban bg-gray-100 flex flex-row flex-1 gap-1 overflow-x-scroll min-h-96 hover:cursor-grab">
+    <div className="kanban bg-gray-100 flex flex-row flex-1 gap-1 overflow-x-auto min-h-96 hover:cursor-grab">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {Object.entries(groupedTasks).map(([groupName, tasks]) => (
           <div

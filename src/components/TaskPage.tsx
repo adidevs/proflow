@@ -105,6 +105,7 @@ function TaskPage({
         <div>
           <div className="absolute right-4 top-4">
             <ViewSelector
+              page={pageName}
               view={view}
               setView={setView}
               grouping={grouping}

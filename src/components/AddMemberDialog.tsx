@@ -1,4 +1,5 @@
 "use client";
+import { z } from "zod";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import {
@@ -23,6 +24,7 @@ import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import { toast } from "react-toastify";
 import { useProjects } from "@/store";
+import Loader from "@/components/Loader";
 
 export function AddMemberDialog({
   project_owner,
@@ -34,6 +36,7 @@ export function AddMemberDialog({
   members: { name: string; email: string }[] | undefined;
 }) {
   const { data: session } = useSession();
+  const [loading, setLoading] = useState(false);
   const { addMember } = useProjects((state) => state);
   const [newMember, setNewMember] = useState({
     name: "",
@@ -41,13 +44,28 @@ export function AddMemberDialog({
     project_id: project_id,
   });
 
+  const formSchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+  });
+
   const handleNewProject = (e: any) => {
     if (!newMember.email || !newMember.name) {
       toast.error("Please fill all fields!");
+      setLoading(false);
       return;
     }
+
     if (members?.find((member) => member.email === newMember.email)) {
       toast.error("Member already exists");
+      setLoading(false);
+      return;
+    }
+
+    const validationResult = formSchema.safeParse(newMember);
+    if (!validationResult.success) {
+      toast.error("Invalid email");
+      setLoading(false);
       return;
     }
     e.preventDefault();
@@ -63,15 +81,19 @@ export function AddMemberDialog({
         if (data.status === 200) {
           toast.success(data.message);
           addMember(newMember.project_id, newMember.name, newMember.email);
+          setLoading(false);
         }
       })
       .catch((err) => {
         toast.error(err.message);
+        setLoading(false);
       });
+    
   };
 
   return (
     <div>
+      {loading && <Loader />}
       {project_owner === session?.user.email && (
         <Dialog>
           <DialogTrigger>
@@ -114,6 +136,7 @@ export function AddMemberDialog({
                 </Label>
                 <Input
                   id="description"
+                  type="email"
                   placeholder="Member Email"
                   className="col-span-3"
                   onChange={(e) =>
@@ -127,7 +150,7 @@ export function AddMemberDialog({
             </div>
             <DialogClose>
               <DialogFooter>
-                <Button onClick={(e) => handleNewProject(e)}>Add Member</Button>
+                <Button disabled={loading} onClick={(e) => {setLoading(true);handleNewProject(e)}}>Add Member</Button>
               </DialogFooter>
             </DialogClose>
           </DialogContent>

@@ -17,7 +17,7 @@ export default function Layout({
       
       {/* Main Content */}
       <main
-        className={`flex-grow p-4 overflow-y-auto transition-all duration-300 ease-in-out
+        className={`flex flex-grow p-4 overflow-y-auto transition-all duration-300 ease-in-out min-h-screen
         ${sidebarOpen ? "ml-64" : "ml-0"}`} // This class controls the main content margin
       >
         {children}

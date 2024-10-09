@@ -1,4 +1,3 @@
-
 import React from "react";
 import UserSection from "./UserSection";
 import ProjectSection from "./ProjectSection";
@@ -28,7 +27,7 @@ function Sidebar({
 
       {/* Sidebar */}
       <div
-        className={`fixed top-0 left-0 h-full bg-slate-100 transition-all duration-300 ease-in-out overflow-y-auto
+        className={`fixed top-0 left-0 h-full bg-slate-100 transition-all duration-300 ease-in-out  overflow-x-hidden
         ${sidebarOpen ? "w-64" : "w-0"} flex flex-col`}
       >
         <div className="p-4 text-xl font-medium">ProFlow</div>

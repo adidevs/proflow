@@ -45,7 +45,7 @@ function ProjectSection() {
 
        <CreateProjectDialog />
       </h3>
-      <ul className="list-none my-2 text-sm">
+      <ul className="list-none my-2 text-sm overflow-y-auto">
         {projects.length == 0
           ? "Create or Join a Project!"
           : projects.map((project, index) => (

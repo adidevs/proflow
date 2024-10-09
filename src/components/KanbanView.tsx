@@ -23,7 +23,7 @@ function KanbanView({
   filterProject: string;
 }) {
   return (
-    <div className="kanban bg-gray-100 flex flex-row flex-1 gap-1 overflow-x-auto min-h-96 hover:cursor-grab">
+    <div className="kanban bg-gray-100 flex flex-row flex-1 gap-1 overflow-x-auto flex-grow min-h-96 hover:cursor-grab">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {Object.entries(groupedTasks).map(([groupName, tasks]) => (
           <div
@@ -47,7 +47,7 @@ function KanbanView({
             <StrictModeDroppable droppableId={`${groupName}`}>
               {(provided) => (
                 <ul
-                  className="tasks overflow-y-auto max-h-[560px]"
+                  className="tasks min-w-44 overflow-y-auto overflow-x-hidden max-h-[560px]"
                   {...provided.droppableProps}
                   ref={provided.innerRef}
                 >
@@ -75,7 +75,6 @@ function KanbanView({
                         return deadlineB - deadlineA;
                       }
                     })
-
                     .map((task, index) => (
                       <Draggable
                         isDragDisabled={grouping === "project"}

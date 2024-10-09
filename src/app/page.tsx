@@ -1,5 +1,4 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
@@ -50,7 +49,7 @@ export default function Home() {
         <p className="text-lg mb-4">Get started by logging in or signing up!</p>
         <div className="flex flex-row gap-2 mt-4">
           <Button
-            onClick={() => router.push("/sign-in")}
+            onClick={() => router.push("/app/today")}
             className="bg-blue-500 hover:bg-blue-700"
           >
             Get Started

@@ -1,14 +1,14 @@
 import { auth as middleware } from "@/auth";
 
 export default middleware((req) => {
-  // if (!req.auth && req.nextUrl.pathname == "/app/:path*") {
-  //   const newUrl = new URL("/sign-in", req.nextUrl.origin);
-  //   return Response.redirect(newUrl);
-  // }
-  // if (req.auth && (req.nextUrl.pathname == "/sign-in" || req.nextUrl.pathname == "/sign-up")) {
-  //   const newUrl = new URL("/app/today", req.nextUrl.origin);
-  //   return Response.redirect(newUrl);
-  // }
+  if (!req.auth && req.nextUrl.pathname.startsWith("/app")) {
+    const newUrl = new URL("/sign-in", req.nextUrl.origin);
+    return Response.redirect(newUrl);
+  }
+  if (req.auth && (req.nextUrl.pathname == "/sign-in" || req.nextUrl.pathname == "/sign-up")) {
+    const newUrl = new URL("/app/today", req.nextUrl.origin);
+    return Response.redirect(newUrl);
+  }
 });
 
 export const config = {
@@ -20,3 +20,4 @@ export const config = {
   ],
 };
 
+ 

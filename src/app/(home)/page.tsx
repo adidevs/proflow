@@ -1,10 +1,7 @@
+"use client";
 import React from "react";
-function Home() {
-  return (
-    <div>
-      Home
-    </div>
-  );
+function Page() {
+  return <div>Home</div>;
 }
 
-export default Home;
+export default Page;

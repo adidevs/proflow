@@ -55,7 +55,7 @@ export default function ViewSelector({
         <DropdownMenuLabel>Views</DropdownMenuLabel>
         <div className="grid grid-flow-col items-center justify-around font-light">
           <DropdownMenuItem
-            className={`flex flex-col text-sm items-center gap-2 hover:text-gray-500 ${
+            className={`flex flex-col w-24 text-sm items-center gap-2 hover:text-gray-500 ${
               view === "list" && "text-gray-900 bg-gray-200"
             }`}
             onClick={() => setView("list")}
@@ -64,7 +64,7 @@ export default function ViewSelector({
             List
           </DropdownMenuItem>
           <DropdownMenuItem
-            className={`flex flex-col text-sm items-center gap-2 hover:text-gray-500${
+            className={`flex flex-col w-24 text-sm items-center gap-2 hover:text-gray-500${
               view === "kanban" && "text-gray-900 bg-gray-200"
             }`}
             onClick={() => setView("kanban")}

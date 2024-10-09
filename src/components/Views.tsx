@@ -16,7 +16,7 @@ const Views = ({
   groupedTasks,
   sorting,
   setSorting,
-  filterProject
+  filterProject,
 }: {
   view: string;
   grouping: string;
@@ -38,8 +38,6 @@ const Views = ({
         (group) => groupedTasks[group].length > 0
       )
     : [];
-
-
 
   const handleOnDragEnd = (result: DropResult) => {
     setSorting("false");
@@ -176,7 +174,7 @@ const Views = ({
             handleOnDragEnd={handleOnDragEnd}
             toggleAddTask={toggleAddTask}
             openAddTask={openAddTask}
-            filterProject={filterProject} 
+            filterProject={filterProject}
           />
         )}
       </div>

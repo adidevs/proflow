@@ -37,18 +37,7 @@ function ListView({
               key={groupName}
               value={groupName}
               className={`max-w-[350px] ${
-                tasks.filter((task) => {
-                  // Return tasks that are not completed
-                  return (
-                    task.deadline &&
-                    new Date(task.deadline).toDateString() ===
-                      new Date().toDateString() &&
-                    !task.isCompleted
-                  );
-                }).length === 0
-                  ? `hidden`
-                  : ``
-              }`}
+                tasks.length === 0 ? `hidden` : ``}`}
             >
               <AccordionTrigger>
                 <h3 className="font-bold">
@@ -89,7 +78,7 @@ function ListView({
                           const deadlineB = b.deadline
                             ? new Date(b.deadline).getTime()
                             : Infinity;
-
+    
                           // Sort ascending or descending based on `sorting`
                           if (sorting === "asc") {
                             return deadlineA - deadlineB;

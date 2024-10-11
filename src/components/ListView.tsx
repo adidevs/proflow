@@ -69,9 +69,6 @@ function ListView({
                           } else return task.projectId === filterProject;
                         })
                         .sort((a, b) => {
-                          if (sorting === "false") {
-                            return 0;
-                          }
                           const deadlineA = a.deadline
                             ? new Date(a.deadline).getTime()
                             : Infinity; // Set to infinity for tasks with no deadline

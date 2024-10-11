@@ -131,6 +131,7 @@ export function CreateProjectDialog() {
             <Button
               className="flex flex-row items-center gap-1 m-1"
               onClick={() => {
+                setLoading(true);
                 handleNewProject({ ...newProject, generateAITasks: true });
               }}
             >

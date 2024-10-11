@@ -200,7 +200,10 @@ function Page({ params: { project_id } }: { params: { project_id: string } }) {
       });
   };
 
-  const handleDeleteProject = async (id: string|undefined, owner: string | undefined) => {
+  const handleDeleteProject = async (
+    id: string | undefined,
+    owner: string | undefined
+  ) => {
     if (owner !== session?.user.email) {
       toast.error("You are not the owner of this project!");
       return;
@@ -231,7 +234,7 @@ function Page({ params: { project_id } }: { params: { project_id: string } }) {
         <title>{project?.name}</title>
         <meta name="description" content={project?.description} />
       </Head>
-      <div className="mt-12 lg:mx-28">
+      <div className="mt-12 lg:mx-28 w-full md:mx-20 mx-10">
         <div className="flex flex-row items-center justify-between">
           <div>
             <h1 className="font-bold text-2xl">{project?.name}</h1>
@@ -305,6 +308,8 @@ function Page({ params: { project_id } }: { params: { project_id: string } }) {
                 <div className="flex flex-col">
                   <div className="text-base">
                     {member.name ? member.name : "Anonymous"}
+                    {session?.user.email === member.email && " (You)"}
+                    {project?.owner === member.email && " (Owner)"}
                   </div>
                   <div className="text-sm font-light text-gray-600">
                     {member.email}

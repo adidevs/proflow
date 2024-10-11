@@ -89,6 +89,9 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+  div {
+    @apply select-none;
+  }
 }
 @layer utilities {
   /* Scrollbar width and height */

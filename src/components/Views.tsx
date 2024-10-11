@@ -15,14 +15,12 @@ const Views = ({
   grouping,
   groupedTasks,
   sorting,
-  setSorting,
   filterProject,
 }: {
   view: string;
   grouping: string;
   groupedTasks: Record<string, Task[]>;
-  sorting: "asc" | "desc" | "false";
-  setSorting: React.Dispatch<React.SetStateAction<"asc" | "desc" | "false">>;
+  sorting: "asc" | "desc";
   filterProject: string;
 }) => {
   const { updateTask, getTask } = useTasks((state) => state);
@@ -40,18 +38,12 @@ const Views = ({
     : [];
 
   const handleOnDragEnd = (result: DropResult) => {
-    setSorting("false");
     const { source, destination, draggableId } = result;
     if (!destination) return;
 
     if (source.droppableId === destination.droppableId) {
-      if (source.index === destination.index) return;
-
-      const tasks = groupedTasks[source.droppableId];
-      const [removed] = tasks.splice(source.index, 1);
-      source.index < destination.index
-        ? tasks.splice(destination.index + 1, 0, removed)
-        : tasks.splice(destination.index, 0, removed);
+      toast.info("Task moved to the same group");
+      return;
     } else if (source.droppableId !== destination.droppableId) {
       const tasks = groupedTasks[source.droppableId];
       const [removed] = tasks.splice(source.index, 1);

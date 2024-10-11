@@ -27,7 +27,7 @@ function TaskPage({
     "project" | "deadline" | "label" | "priority" | "assignee"
   >("priority");
   const [filterProject, setFilterProject] = useState<string>("false");
-  const [sorting, setSorting] = useState<"asc" | "desc" | "false">("asc");
+  const [sorting, setSorting] = useState<"asc" | "desc">("asc");
 
   const groupedTasks = groupTasks(tasks, grouping, getProject);
   useEffect(() => {
@@ -51,6 +51,15 @@ function TaskPage({
                     task.deadline &&
                     new Date(task.deadline).toDateString() ===
                       new Date().toDateString() &&
+                    !task.isCompleted;
+                  break;
+                case "tomorrow":
+                  const tomorrow = new Date();
+                  tomorrow.setDate(tomorrow.getDate() + 1);
+                  condition =
+                    task.deadline &&
+                    new Date(task.deadline).toDateString() ===
+                      tomorrow.toDateString() &&
                     !task.isCompleted;
                   break;
                 case "completed":
@@ -125,7 +134,6 @@ function TaskPage({
               grouping={grouping}
               groupedTasks={groupedTasks}
               sorting={sorting}
-              setSorting={setSorting}
               filterProject={filterProject}
             />
           </div>

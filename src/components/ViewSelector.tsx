@@ -77,7 +77,7 @@ export default function ViewSelector({
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuLabel>Sort by</DropdownMenuLabel>
+          <DropdownMenuLabel>Group by</DropdownMenuLabel>
           <DropdownMenuItem
             className={`flex flex-row items-center font-light text-gray-600 gap-2 ${
               grouping === "assignee" && "text-gray-900 bg-gray-200"
@@ -123,6 +123,8 @@ export default function ViewSelector({
             <CalendarClock size={20} />
             Label
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuLabel>Sort (Deadline)</DropdownMenuLabel>
           <DropdownMenuSub>
             <DropdownMenuSubTrigger className="flex flex-row items-center font-light text-gray-600 gap-2">
               <ArrowUpDown size={20} />

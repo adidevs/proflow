@@ -23,7 +23,7 @@ function KanbanView({
   filterProject: string;
 }) {
   return (
-    <div className="kanban bg-gray-100 flex flex-row flex-1 gap-1 overflow-x-auto flex-grow min-h-96 hover:cursor-grab">
+    <div className="kanban bg-gray-100 flex flex-row flex-1 gap-1 flex-grow hover:cursor-grab">
       <DragDropContext onDragEnd={handleOnDragEnd}>
         {Object.entries(groupedTasks).map(([groupName, tasks]) => (
           <div
@@ -58,9 +58,6 @@ function KanbanView({
                       } else return task.projectId === filterProject;
                     })
                     .sort((a, b) => {
-                      if (sorting === "false") {
-                        return 0;
-                      }
                       const deadlineA = a.deadline
                         ? new Date(a.deadline).getTime()
                         : Infinity; // Set to infinity for tasks with no deadline
